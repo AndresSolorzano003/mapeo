@@ -33,14 +33,22 @@ body {
 
 .map-wrapper {
   flex: 1 1 640px;
+  width: 100%;
   min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 16px;
 }
 
 .map-svg {
   width: 100%;
+  /* Keeps shapes and labels legible on narrow screens instead of shrinking
+     to fit — the wrapper scrolls/pinch-zooms horizontally below this width. */
+  min-width: 640px;
   height: auto;
   display: block;
   border-radius: 16px;
+  touch-action: pan-x pan-y;
 }
 
 .shape.interactive {
@@ -223,9 +231,10 @@ body {
   background: #111;
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 8px 10px;
+  padding: 10px;
   color: var(--text);
-  font-size: 14px;
+  /* 16px prevents iOS Safari from auto-zooming the page on focus */
+  font-size: 16px;
   font-family: inherit;
   resize: vertical;
 }
@@ -275,9 +284,25 @@ body {
   font-size: 12px;
 }
 
+.scroll-hint {
+  display: none;
+  color: var(--text-dim);
+  font-size: 12px;
+  margin: 6px 0 0 0;
+}
+
 @media (max-width: 700px) {
   .editor-layout {
     flex-direction: column;
     padding: 12px;
+    gap: 16px;
+  }
+
+  .map-wrapper {
+    flex-basis: auto;
+  }
+
+  .scroll-hint {
+    display: block;
   }
 }

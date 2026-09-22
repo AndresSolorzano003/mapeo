@@ -171,6 +171,7 @@ export default function MapEditor() {
             );
           })}
         </svg>
+        <p className="scroll-hint">Desliza el mapa hacia los lados para ver todas las secciones →</p>
       </div>
 
       <div className="side-panel">
